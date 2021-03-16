@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
+        integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous" />
+    <title>Kryptoměnové portfolio</title>
+</head>
+<body>
+    <header class="jumbotron text-center bg-warning">
+        <h1 class="display-1 text-light">Kryptoměnové portfolio</h1>
+    </header>
+    <main class="container">
+        <h2 class="mb-4 p-3 badge-dark text-uppercase text-center text-light">Kryptoměnové portfolio</h2>  
+        <div class="container">                  
+            <form>
+                <div class="form-group row">
+                    <label for="cena" class="col-sm-6 col-form-label">Zadejte počet Bitcoinu</label>
+                    <div class="col-sm-3">
+                        <input type="number" class="form-control" id="pBTC" value="0" min="0"/>
+                    </div>
+                    <div class="col-sm-3">
+                        BTC
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="cena" class="col-sm-6 col-form-label">Zadejte počet Etherea</label>
+                    <div class="col-sm-3">
+                        <input type="number" class="form-control" id="pETH" value="0" min="0"/>
+                    </div>
+                    <div class="col-sm-3">
+                        ETH
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="cena" class="col-sm-6 col-form-label">Zadejte počet Litecoinu</label>
+                    <div class="col-sm-3">
+                        <input type="number" class="form-control" id="pLTC" value="0" min="0"/>
+                    </div>
+                    <div class="col-sm-3">
+                        LTC
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="cena" class="col-sm-6 col-form-label">Zadejte počet Binance Coinu</label>
+                    <div class="col-sm-3">
+                        <input type="number" class="form-control" id="pBNB" value="0" min="0"/>
+                    </div>
+                    <div class="col-sm-3">
+                        BNB
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="cena" class="col-sm-6 col-form-label">Zadejte počet Cardana</label>
+                    <div class="col-sm-3">
+                        <input type="number" class="form-control" id="pADA" value="0" min="0"/>
+                    </div>
+                    <div class="col-sm-3">
+                        ADA
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="cena" class="col-sm-6 col-form-label">Zadejte počet Dogecoinu</label>
+                    <div class="col-sm-3">
+                        <input type="number" class="form-control" id="pDOGE" value="0" min="0"/>
+                    </div>
+                    <div class="col-sm-3">
+                        DOGE
+                    </div>
+                </div>
+                
+                <!-- Tlačítko - typ button -->
+                <div class="form-group row">
+                    <div class="offset-sm-6 col-sm-6">
+                        <button type="button" id="vypocet" class="btn btn-dark">
+                            Výpočet
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <hr />
+            <!-- Zobrazení výsledku -->
+            <div id="vysledek" class="display-4">?</div>
+        </div>
+        <br>
+    </main>
+    <footer class="container-fluid text-center mt-5">
+        <a href="https://coinmarketcap.com/all/views/all"><p>Stránka ze které čerpám aktuální kurz </p></a>
+        <p>&copy; 2021 - SŠPU Opava - autor: Jakub Vaněk IT4</p>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>
