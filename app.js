@@ -1,14 +1,15 @@
-const express = require('express')
+const express = require('express');
+const scraper = require('./scraper');
 const app = express()
 const port = 3000
 
-app.use(express.static('public'))
-app.use('/css', express.static(__dirname + 'public/css'))
-app.use('/js', express.static(__dirname + 'public/js'))
-app.use('/img', express.static(__dirname + 'public/img'))
+app.use(express.static('public'));
+app.get('/api/coins', (req, res) => {
+    scraper.scrapeProduct('https://coinmarketcap.com/all/views/all')
+    .then(function(result) {
+       res.send(result);
+    }); 
+});
 
-app.get('', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html')
-})
 
-app.listen(port, () => console.info(`Listening on port ${port}`))
+app.listen(port, () => console.info(`Listening on port ${port}`));

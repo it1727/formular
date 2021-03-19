@@ -1,36 +1,77 @@
-const puppeteer = require('puppeteer');
-async function scrapeProduct(url){
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto(url);
+$(function () {
 
-    const [el0] = await page.$x('//*[@id="__next"]/div[1]/div[2]/div/div[1]/div/div[2]/div[3]/div/table/tbody/tr[1]/td[5]/div/a')
-    const txt0 = await el0.getProperty('textContent');
-    const btc = await txt0.jsonValue();
+    let Crypto = {
+        btc: 0,
+        eth: 0,
+        doge: 0,
+        ltc: 0,
+        ada: 0,
+        bnb: 0,
+    }
 
-    const [el1] = await page.$x('//*[@id="__next"]/div[1]/div[2]/div/div[1]/div/div[2]/div[3]/div/table/tbody/tr[2]/td[5]/div/a')
-    const txt1 = await el1.getProperty('textContent');
-    const eth = await txt1.jsonValue();
 
-    const [el2] = await page.$x('//*[@id="__next"]/div[1]/div[2]/div/div[1]/div/div[2]/div[3]/div/table/tbody/tr[15]/td[5]/div/a')
-    const txt2 = await el2.getProperty('textContent');
-    const doge = await txt2.jsonValue();
+    $.ajax({
+        type: "GET",
+        url: window.location + "api/coins",
+        success: function (result) {
+            console.log(result);
+            if (result.btc.length > 7) {
+                Crypto.btc = result.btc.substr(1).split(',');
+                Crypto.btc = parseFloat(Crypto.btc[0] + Crypto.btc[1]);
+            }
+            else {
+                Crypto.btc = result.btc.substr(1)
+            }
+            console.log(Crypto.btc);
+            if (result.eth.length > 7) {
+                Crypto.eth = result.eth.substr(1).split(',');
+                Crypto.eth = parseFloat(Crypto.eth[0] + Crypto.eth[1]);
+            }
+            else {
+                Crypto.eth = result.eth.substr(1)
+            }
+            console.log(Crypto.eth);
+            if (result.doge.length > 7) {
+                Crypto.doge = result.doge.substr(1).split(',');
+                Crypto.doge = parseFloat(Crypto.doge[0] + Crypto.doge[1]);
+            }
+            else {
+                Crypto.doge = result.doge.substr(1)
+            }
+            console.log(Crypto.doge);
+            if (result.ltc.length > 7) {
+                Crypto.ltc = result.ltc.substr(1).split(',');
+                Crypto.ltc = parseFloat(Crypto.ltc[0] + Crypto.ltc[1]);
+            }
+            else {
+                Crypto.ltc = result.ltc.substr(1)
+            }
+            console.log(Crypto.ltc);
+            if (result.ada.length > 7) {
+                Crypto.ada = result.ada.substr(1).split(',');
+                Crypto.ada = parseFloat(Crypto.ada[0] + Crypto.ada[1]);
+            }
+            else {
+                Crypto.ada = result.ada.substr(1)
+            }
+            console.log(Crypto.ada);
+            if (result.bnb.length > 7) {
+                Crypto.bnb = result.bnb.substr(1).split(',');
+                Crypto.bnb = parseFloat(Crypto.bnb[0] + Crypto.bnb[1]);
+            }
+            else {
+                Crypto.bnb = result.bnb.substr(1)
+            }
+            console.log(Crypto.bnb);
+        },
+        error: function (e) {
+            console.log("ERROR: ", e);
+        }
+    });
 
-    const [el3] = await page.$x('//*[@id="__next"]/div[1]/div[2]/div/div[1]/div/div[2]/div[3]/div/table/tbody/tr[9]/td[5]/div/a')
-    const txt3 = await el3.getProperty('textContent');
-    const ltc = await txt3.jsonValue();
+    $('#vypocet').on('click', function () {
+        let vystup = "Vaše portfolio má hodnotu = " + (Crypto.btc * $("#pBTC").val() + Crypto.eth * $("#pETH").val() + Crypto.doge * $("#pDOGE").val() + Crypto.ltc * $("#pLTC").val() + Crypto.ada * $("#pADA").val() + Crypto.bnb * $("#pBNB").val()) + " $";
+        $('#vysledek').html(vystup);
+    });
 
-    const [el4] = await page.$x('//*[@id="__next"]/div[1]/div[2]/div/div[1]/div/div[2]/div[3]/div/table/tbody/tr[5]/td[5]/div/a')
-    const txt4 = await el4.getProperty('textContent');
-    const ada = await txt4.jsonValue();
-
-    const [el5] = await page.$x('//*[@id="__next"]/div[1]/div[2]/div/div[1]/div/div[2]/div[3]/div/table/tbody/tr[3]/td[5]/div/a')
-    const txt5 = await el5.getProperty('textContent');
-    const bnb = await txt5.jsonValue();
-
-    console.log({btc, eth, doge, ltc, ada, bnb});
-    browser.close();
-}
-
-scrapeProduct('https://coinmarketcap.com/all/views/all');
-
+})
