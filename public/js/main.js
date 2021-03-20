@@ -7,6 +7,16 @@ $(function () {
         ltc: 0,
         ada: 0,
         bnb: 0,
+        uprava: function(kurz){
+            if (kurz.length > 7) {
+                kurz = kurz.substr(1).split(',');
+                kurz = parseFloat(kurz[0] + kurz[1]);
+            }
+            else {
+                kurz = kurz.substr(1)
+            }
+            return kurz;
+        }
     }
 
 
@@ -15,54 +25,12 @@ $(function () {
         url: window.location + "api/coins",
         success: function (result) {
             console.log(result);
-            if (result.btc.length > 7) {
-                Crypto.btc = result.btc.substr(1).split(',');
-                Crypto.btc = parseFloat(Crypto.btc[0] + Crypto.btc[1]);
-            }
-            else {
-                Crypto.btc = result.btc.substr(1)
-            }
-            console.log(Crypto.btc);
-            if (result.eth.length > 7) {
-                Crypto.eth = result.eth.substr(1).split(',');
-                Crypto.eth = parseFloat(Crypto.eth[0] + Crypto.eth[1]);
-            }
-            else {
-                Crypto.eth = result.eth.substr(1)
-            }
-            console.log(Crypto.eth);
-            if (result.doge.length > 7) {
-                Crypto.doge = result.doge.substr(1).split(',');
-                Crypto.doge = parseFloat(Crypto.doge[0] + Crypto.doge[1]);
-            }
-            else {
-                Crypto.doge = result.doge.substr(1)
-            }
-            console.log(Crypto.doge);
-            if (result.ltc.length > 7) {
-                Crypto.ltc = result.ltc.substr(1).split(',');
-                Crypto.ltc = parseFloat(Crypto.ltc[0] + Crypto.ltc[1]);
-            }
-            else {
-                Crypto.ltc = result.ltc.substr(1)
-            }
-            console.log(Crypto.ltc);
-            if (result.ada.length > 7) {
-                Crypto.ada = result.ada.substr(1).split(',');
-                Crypto.ada = parseFloat(Crypto.ada[0] + Crypto.ada[1]);
-            }
-            else {
-                Crypto.ada = result.ada.substr(1)
-            }
-            console.log(Crypto.ada);
-            if (result.bnb.length > 7) {
-                Crypto.bnb = result.bnb.substr(1).split(',');
-                Crypto.bnb = parseFloat(Crypto.bnb[0] + Crypto.bnb[1]);
-            }
-            else {
-                Crypto.bnb = result.bnb.substr(1)
-            }
-            console.log(Crypto.bnb);
+            Crypto.btc = Crypto.uprava(result.btc);
+            Crypto.eth = Crypto.uprava(result.eth);
+            Crypto.doge = Crypto.uprava(result.doge);
+            Crypto.ltc = Crypto.uprava(result.ltc);
+            Crypto.ada = Crypto.uprava(result.ada);
+            Crypto.bnb = Crypto.uprava(result.bnb);
         },
         error: function (e) {
             console.log("ERROR: ", e);
